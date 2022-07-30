@@ -7,9 +7,9 @@ import axios from "axios";
 import moment from "moment";
 
 const Compiler = () => {
-    const [language, setUserLang] = useState("py");
+    const [language, setUserLang] = useState("");
   const [code, setUserCode] = useState("");
-  const [output, setUserOutput] = useState("");
+  const [useroutput, setUserOutput] = useState("");
   const [status, setstatus] = useState("");
   const [jobDetails, setjobDetails] = useState(null);
   const [userTheme, setUserTheme] = useState("vs-dark");
@@ -59,13 +59,13 @@ const Compiler = () => {
         const { success, job, error } = dataRes;
         if (success) {
           const { status: jobStatus, output: jobOutput } = job;
-          console.log(job)
           setstatus(jobStatus);
           setjobDetails(job);
           if (jobStatus === "pending") {
             return;
           }
-          setUserOutput(jobOutput);
+          if(jobOutput !=="undefined")
+              setUserOutput(jobOutput);
           clearInterval(intervalId);
         } else {
           setstatus("Error : Please Retry");
@@ -107,6 +107,8 @@ const Compiler = () => {
     result+=`Execution time: ${executiontime}s`;
     return result
   }
+  console.log(useroutput)
+
   return (
     <div className="App">
       <Navbar
@@ -150,9 +152,9 @@ const Compiler = () => {
                 />
               </div>
             ) : (
-              <textarea disabled className="outputText">
-                {output}
-              </textarea>
+              <p className="outputText">
+                {useroutput && useroutput}
+              </p>
             )}
           </div>
           <h4 className="job-text">JOB DETAILS</h4>
