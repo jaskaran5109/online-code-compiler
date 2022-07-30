@@ -19,11 +19,9 @@ const PORT = 8000;
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use(express.static(path.join(__dirname, "./frontend/build")));
+app.use(express.static(path.join(__dirname, "./frontend/build")));
 
-// app.get("*",(req,res)=>{
-//     res.sendFile(path.resolve(__dirname, "./frontend/build/index.html"))
-// })
+
 app.get("/status", async (req, res, next) => {
   const jobId = req.query.id;
   if (jobId === undefined) {
@@ -98,7 +96,9 @@ app.post("/run", async (req, res, next) => {
   }
 });
 
-
+app.get("*",(req,res)=>{
+  res.sendFile(path.resolve(__dirname, "./frontend/build/index.html"))
+})
 mongoose
   .connect("mongodb+srv://admin:OdeaqpXdxYBFB9p1@compilerapp.hht5bhb.mongodb.net/compilerApp?retryWrites=true&w=majority", {
     useNewUrlParser: true,
