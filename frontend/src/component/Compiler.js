@@ -59,7 +59,7 @@ const Compiler = () => {
         const { success, job, error } = dataRes;
         if (success) {
           const { status: jobStatus, output: jobOutput } = job;
-        console.log(job)
+        // console.log(job)
 
           setstatus(jobStatus);
           setjobDetails(job);
@@ -108,7 +108,7 @@ const Compiler = () => {
     result+=`Execution time: ${executiontime}s`;
     return result
   }
-  console.log(useroutput)
+  // console.log(useroutput)
 
   return (
     <div className="App">
@@ -153,9 +153,9 @@ const Compiler = () => {
                 />
               </div>
             ) : (
-              <textarea disabled className="outputText">
+              <p className="outputText">
                 {useroutput && useroutput}
-              </textarea>
+              </p>
             )}
           </div>
           <h4 className="job-text">JOB DETAILS</h4>

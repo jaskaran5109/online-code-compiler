@@ -29,9 +29,11 @@
   max-width: 90%;
   min-width: 95%;
   min-height: 30px;
+  max-height: 250px;
   background-color: #000000;
   color: #ffffff;
   padding: 10px;
+  overflow-y :scroll;
 }
 .output-box{
   padding:1%;
