@@ -59,12 +59,13 @@ const Compiler = () => {
         const { success, job, error } = dataRes;
         if (success) {
           const { status: jobStatus, output: jobOutput } = job;
+        console.log(job)
+
           setstatus(jobStatus);
           setjobDetails(job);
           if (jobStatus === "pending") {
             return;
           }
-          if(jobOutput !=="undefined")
               setUserOutput(jobOutput);
           clearInterval(intervalId);
         } else {
