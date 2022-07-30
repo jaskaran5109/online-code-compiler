@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const { generateFile } = require("./generateFile");
 const {
@@ -18,7 +19,11 @@ const PORT = 8000;
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "./frontend/build")));
 
+app.get("*",(req,res)=>{
+    res.sendFile(path.resolve(__dirname, "./frontend/build/index.html"))
+})
 app.get("/status", async (req, res, next) => {
   const jobId = req.query.id;
   if (jobId === undefined) {
