@@ -153,9 +153,9 @@ const Compiler = () => {
                 />
               </div>
             ) : (
-              <p className="outputText">
+              <textarea disabled className="outputText">
                 {useroutput && useroutput}
-              </p>
+              </textarea>
             )}
           </div>
           <h4 className="job-text">JOB DETAILS</h4>
